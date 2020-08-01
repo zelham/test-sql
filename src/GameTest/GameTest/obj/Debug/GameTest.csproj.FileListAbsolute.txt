@@ -1,0 +1,7 @@
+C:\Users\zachw\Desktop\Dev\test-sql\src\GameTest\GameTest\bin\Debug\GameTest.exe.config
+C:\Users\zachw\Desktop\Dev\test-sql\src\GameTest\GameTest\bin\Debug\GameTest.exe
+C:\Users\zachw\Desktop\Dev\test-sql\src\GameTest\GameTest\bin\Debug\GameTest.pdb
+C:\Users\zachw\Desktop\Dev\test-sql\src\GameTest\GameTest\obj\Debug\GameTest.csprojAssemblyReference.cache
+C:\Users\zachw\Desktop\Dev\test-sql\src\GameTest\GameTest\obj\Debug\GameTest.csproj.CoreCompileInputs.cache
+C:\Users\zachw\Desktop\Dev\test-sql\src\GameTest\GameTest\obj\Debug\GameTest.exe
+C:\Users\zachw\Desktop\Dev\test-sql\src\GameTest\GameTest\obj\Debug\GameTest.pdb
