@@ -15,69 +15,38 @@ namespace GameTest
         }
 
         static void PlayGame(string damageType)
-        {   
+        {
             //player
             float playerHealth = 10.0f;
-            float enemyHealth = 5.0f;
-            bool didBlock = false;
-            bool didAttack = false;
+            float[] enemies = { 1.0f, 3.0f, 5.0f, 8.0f, 13.0f };
             bool isPlayerDead = false;
             bool isEnemyDead = false;
             bool isGameOver = false;
-            ConsoleKeyInfo playerAction;
+
+            Console.WriteLine(enemies.Length + " enemies have approached.");
+            for (int i = 0; i < enemies.Length; i++)
+            {
+                Console.WriteLine("Enemy " + (i + 1) + " has " + enemies[i] + " health.");
+            }
 
             while (isGameOver == false)
             {
-                //inform player how much health they have
-                DisplayMessage("the player currently has " + playerHealth + " health.");
+                for (int i = 0; i < enemies.Length; i++)
+                {
+                    enemies[i] -= PlayCombat(playerHealth, damageType, enemies[i]);
 
-                DisplayMessage("choose an action: attack(a) or block(b)");
-                playerAction = Console.ReadKey();
-                //attack or defend ('a' == 'a')
-                if (playerAction.KeyChar == 'a')
-                {
-                    didAttack = true;
-                }
-                else if (playerAction.KeyChar == 'b')
-                {
-                    didBlock = true;
-                    DisplayMessage("the player blocked the damage.");
+                    isEnemyDead = enemies[0] < 1;
+                    isPlayerDead = ResolvePlayer(playerHealth);
+                    if (isPlayerDead || isEnemyDead)
+                    {
+                        isGameOver = true;
+                    }
+
                 }
 
-                if (didBlock == false)
-                {
-                    //attack player
-                    const float damage = 1.0f;
-                    playerHealth = playerHealth - damage;
-                    DisplayMessage("the player has been taken " + damage + " damage from " + damageType);
-                    //display player has been attacked
-                    DisplayMessage("the player now has " + playerHealth + " health.");
-                }
-
-                if (didAttack == true)
-                {
-                    //attack enemy
-                    const float damage = 1.0f;
-                    enemyHealth = enemyHealth - damage;
-                    DisplayMessage("the enemy has been taken " + damage + " damage from " + damageType);
-                    //display player has been attacked
-                    DisplayMessage("the enemy now has " + enemyHealth + " health.");
-                }
-
-                isEnemyDead = enemyHealth < 1;
-                isPlayerDead = ResolvePlayer(playerHealth);
-                if (isPlayerDead || isEnemyDead)
-                {
-                    isGameOver = true;
-                }
-                else
-                {
-                    didBlock = false;
-                    didAttack = false;
-                }
             }
 
-            
+
         }
 
         static bool ResolvePlayer(float health)
@@ -101,6 +70,50 @@ namespace GameTest
         static void DisplayMessage(string message)
         {
             Console.WriteLine(message);
+        }
+
+        static float PlayCombat(float playerHealth, string damageType, float enemyHealth)
+        {
+            bool didBlock = false;
+            bool didAttack = false;
+            ConsoleKeyInfo playerAction;
+
+            //inform player how much health they have
+            DisplayMessage("the player currently has " + playerHealth + " health.");
+
+            DisplayMessage("choose an action: attack(a) or block(b)");
+            playerAction = Console.ReadKey();
+            //attack or defend ('a' == 'a')
+            if (playerAction.KeyChar == 'a')
+            {
+                didAttack = true;
+            }
+            else if (playerAction.KeyChar == 'b')
+            {
+                didBlock = true;
+                DisplayMessage("the player blocked the damage.");
+            }
+
+            if (didBlock == false)
+            {
+                //attack player
+                const float damage = 1.0f;
+                playerHealth -= damage;
+                DisplayMessage("the player has been taken " + damage + " damage from " + damageType);
+                //display player has been attacked
+                DisplayMessage("the player now has " + playerHealth + " health.");
+            }
+
+            if (didAttack == true)
+            {
+                //attack enemy
+                const float damage = 1.0f;
+                enemyHealth -= damage;
+                DisplayMessage("the enemy has been taken " + damage + " damage from " + damageType);
+                //display player has been attacked
+                DisplayMessage("the enemy now has " + enemyHealth + " health.");
+            }
+            return enemyHealth;
         }
     }
 }
