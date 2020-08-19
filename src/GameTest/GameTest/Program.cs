@@ -10,8 +10,12 @@ namespace GameTest
     {
         static void Main(string[] args)
         {
-            PlayGame2("poison.");
-            PlayGame("poison.");
+            Game game = new Game();
+            Player player = new Player(100);
+            Player player2 = new Player(50);
+
+            game.PlayGame(player);
+
             Console.ReadKey();
         }
 

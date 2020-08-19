@@ -10,23 +10,40 @@ namespace Practice
     {
         static void Main(string[] args)
         {
+            DisplayMessage("text");
 
+            Add1(5, 1);
+            int result = Add2(3, 6);
         }
 
         /**************\
         |* Functions  *|
         \**************/
         // Practice 1: Write a function that outputs text
-
+        static void DisplayMessage()
+        {
+            Console.WriteLine("message");
+        }
 
         // Practice 2: Write a function called DisplayMessage that takes a string and outputs it
-
+        static void DisplayMessage(string message)
+        {
+            Console.WriteLine(message);
+        }
 
         // Practice 3: Write a function called Add1 that takes two integers, adds them together and outputs the result
-
+        static void Add1(int int1, int int2)
+        {
+            int result = int1 + int2;
+            Console.WriteLine(result);
+        }
 
         // Practice 4: Write a function called Add2 that takes two integers and returns the result
-
+        static int Add2(int int1, int int2)
+        {
+            int result = int1 + int2;
+            return result;
+        }
 
         // Practice 5: Write a function called Add3 that takes two floats and returns the result
 
