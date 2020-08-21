@@ -10,11 +10,18 @@ namespace GameTest
     {
         static void Main(string[] args)
         {
-            Game game = new Game();
-            Player player = new Player(100);
-            Player player2 = new Player(50);
+            Holdable axe = new Weapon("Axe");
+            EpicWeapon epicWeapon = new EpicWeapon("Legendary Sword");
 
-            game.PlayGame(player);
+            Holdable fireball = new Spell("Fireball");
+            Holdable gas = new Spell("Gas");
+
+            Game game = new Game();
+            Entity player = new Player(100, epicWeapon);
+            Entity enemy1 = new Enemy(100, fireball);
+            Entity enemy2 = new Enemy(100, gas);
+
+            game.PlayGame(player, enemy1, enemy2);
 
             Console.ReadKey();
         }
